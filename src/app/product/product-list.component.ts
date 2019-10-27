@@ -11,7 +11,17 @@ export class ProductListComponent implements OnInit {
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false;
-    listFilter: string = 'default';
+    
+    _listFilter: string = 'default';
+    get listFilter(): string{
+        return this._listFilter;
+    }
+    set listFilter(filter: string){
+        this._listFilter = filter;
+        this.filteredProducts = this._listFilter ? this.perfomFilter(this.listFilter) : this.products;
+    }
+
+    filteredProducts: IProduct[];
     products: IProduct[] = [  {
         "productId": 1,
         "productName": "Leaf Rake",
@@ -33,12 +43,22 @@ export class ProductListComponent implements OnInit {
         "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
       }];
 
+      constructor(){
+          this.filteredProducts = this.products;
+          this.listFilter = 'default';
+      }
+
+      perfomFilter(filterBy: string): IProduct[] {
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter((product: IProduct) => product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      } 
+
       toggleImage(): void{
         this.showImage = !this.showImage;
       }
 
       ngOnInit(): void {
-          alert('InitCalled');
+          console.log('InitCalled');
       }
   }
   

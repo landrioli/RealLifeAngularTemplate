@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'convertToSpaces'
 })
 export class ConvertToEspacesPipe implements PipeTransform{
-    transform(value: string, chracter: string, prefix: string) {
-        return prefix + 'sad';
+    transform(value: string, character: string, prefix: string) {
+        return prefix + value.replace(character, ' ');
     }
 }
