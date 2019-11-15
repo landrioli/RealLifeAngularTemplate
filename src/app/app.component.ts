@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ProductService } from 'src/app/product/product.service';
 
 @Component({
   selector: 'pm-root',
@@ -15,8 +14,7 @@ import { ProductService } from 'src/app/product/product.service';
       <router-outlet></router-outlet>
     </div>
     `,
-  styleUrls: ['./app.component.css'],
-  providers: [ ProductService ]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Angular: Getting Started';
